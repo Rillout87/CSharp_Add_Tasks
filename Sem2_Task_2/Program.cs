@@ -22,11 +22,11 @@ namespace Sem2_Task_2
             try
             {
 
-                var BirthDate = DateTime.ParseExact(BirthDateString, "dd.MM.yyyy", cultureInfo);
+                DateTime BirthDate = DateTime.ParseExact(BirthDateString, "dd.MM.yyyy", cultureInfo);
 
 
-                var CurrentDate = new DateTime(2022, 02, 01, 00, 00, 00);
-                var Age = CurrentDate.Year - BirthDate.Year;
+                DateTime CurrentDate = new DateTime(2022, 02, 01, 00, 00, 00);
+                int Age = CurrentDate.Year - BirthDate.Year;
 
 
                 if (BirthDate.Date > CurrentDate.AddYears(-Age)) Age--;
