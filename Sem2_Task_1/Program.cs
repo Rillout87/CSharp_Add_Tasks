@@ -16,7 +16,9 @@ namespace Sem2_Task_1
             Console.WriteLine("Введите длину сторон треугольника через пробел: 'a b c'");
             string[] str = Console.ReadLine().Split(new char[] { ' ', '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries);
             for (i = 0; i < (n < str.Length ? n : str.Length); ++i)
+            {
                 sides[i] = Convert.ToInt32(str[i]);
+            }
 
             int a = sides[0];
             int b = sides[1];

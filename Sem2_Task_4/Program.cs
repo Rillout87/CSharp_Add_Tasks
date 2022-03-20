@@ -12,8 +12,8 @@ namespace Sem2_Task_4
 
         {
             Start:
-            Console.Write("Введите натуральное число: ");
-            string number =  Console.ReadLine();
+            //Console.Write("Введите натуральное число: ");
+            string number =  "156497";
             
             int max = (int)Char.GetNumericValue(number[0]); int min = (int)Char.GetNumericValue(number[0]);
             int IndexMax = 0, IndexMin = 0;
