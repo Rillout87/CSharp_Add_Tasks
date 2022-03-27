@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Sem5_Task_3/Sem5_Task_3.csproj",
+                "${workspaceFolder}/Sem5_Task_Star_1/Sem5_Task_Star_1.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Sem5_Task_3/Sem5_Task_3.csproj",
+                "${workspaceFolder}/Sem5_Task_Star_1/Sem5_Task_Star_1.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Sem5_Task_3/Sem5_Task_3.csproj"
+                "${workspaceFolder}/Sem5_Task_Star_1/Sem5_Task_Star_1.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
