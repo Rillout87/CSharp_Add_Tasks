@@ -5,7 +5,7 @@ using System.Globalization;
 //static System.Globalization.StringInfo;
 
 
-namespace DZ_Task_29
+namespace Sem4_Task_1
 {
     class Program
     {
