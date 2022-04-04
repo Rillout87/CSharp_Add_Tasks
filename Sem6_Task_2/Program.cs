@@ -23,15 +23,20 @@ namespace Sem6_Task_2
             
             if (j == vow.Length && i == saying.Length) Console.WriteLine(count);
             
-            if (i < saying.Length && j < vow.Length)
+            if (i < saying.Length)
             {
 
                 if (saying[i] == vow[j]) count++;
 
                 VowelCount(saying, vow, count, ++i, j);
+            }
+            if (j < vow.Length)
+            {
+                
+                if (saying[i] == vow[j]) count++;
+                
                 VowelCount(saying, vow, count, i=0, ++j);
-                
-                
+                                
             }
             
             
