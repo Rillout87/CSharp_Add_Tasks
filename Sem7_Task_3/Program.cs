@@ -14,25 +14,19 @@ namespace Sem7_Task_3
 
         {   
 
-            //int[,] array = new int[5,5];
-            int[] finish = {0}; // флаг, показващий, что мы дошли до точки [4, 4] (0/1)
+            int[,] array = new int[5,5];
+
             
-            int[,] array = {{1,1,1,0,1},{1,0,1,1,0},{1,0,0,1,1},{1,0,1,0,1},{1,1,1,0,1}};
+            //int[,] array = {{1,0,1,1,0},{1,1,1,1,0},{1,1,0,1,1},{1,0,1,1,0},{0,1,1,1,1}};
             
-            //FillArray (array);
-            //array[0,0] = 1;
-            //array[4,4] = 1;
+            FillArray (array);
+            array[0,0] = 1;
+            array[4,4] = 1;
 
             Console.WriteLine("Исходный массив");
             PrintArray (array);
-
+            FindRoute(array);
             
-
-            
-
-            FindRoute(array, finish);
-            
-            //PrintList(resultList);
 
         }
 
@@ -69,94 +63,91 @@ namespace Sem7_Task_3
         }
 
 
-        static void FindRoute (int[,] arr, int[] finish, string direction = "D", int i = 0, int j =0)
+        static void FindRoute (int[,] arr, bool finished = false, string direction = "right")
 
         {
-            //int a = i, b = j;
-            if (i == 4 && j == 4)
+            int i = 0, j = 0, steps =0;
+
+            while (steps < 50) // ограничим количество шагов
             {
-                finish[0] = 1;
-                Console.WriteLine($"Из точки [0, 0] в точку [4, 4] существует путь.\n" +
-                                    $"Маршрут: {i},{j}");
-            }
-            
-            
-            if (finish[0] == 0 && direction == "D" && i < 4 && i >= 0 && j < 5 && j >= 0)
-            {
-                if (arr[i, j] == 1 && arr[i + 1, j] == 1)
+                switch (direction)
                 {
-                    if (i != 4) FindRoute(arr, finish, direction = "D", ++i, j);
-                    if (j != 4) FindRoute(arr, finish, direction = "R", i, ++j);
-                    if (j != 0) FindRoute(arr, finish, direction = "L", i, --j);
+                    case "right":
+
+                        steps++;
+                        if (i == 0 || arr[i - 1, j] != 1)
+                        {
+
+                            if (j != 4 && arr[i, j + 1] == 1) j++;
+                            else direction = "down";
+                        }
+                        else
+                        { 
+                            direction = "up";
+                            i--;
+                        }
+                        break;
+
+                    case "up":
+
+                        steps++;
+                        if (j == 0 || arr[i, j-1] != 1)
+                        {
+                            if (i != 0 && arr[i - 1, j] == 1) i--;
+                            else direction = "right";
+                        }
+                        else
+                        {
+                            direction = "left";
+                            j--;
+                        }
+
+                        break;
+                    case "left":
+
+                        steps++;
+                        if (i == 4 || arr[i + 1, j] != 1)
+                        {
+                            if (j != 0 && arr[i, j - 1] == 1) j--;
+                            else direction = "up";
+                        }
+                        else
+                        {
+                            direction = "down";
+                            i++;
+                        }
+                        break;
+
+                    case "down":
+
+                        steps++;
+                        if (j == 4 || arr[i, j + 1] != 1)
+                        {
+                            if (i != 4 && arr[i + 1, j] == 1) i++;
+                            else direction = "left";
+                        }
+                        else
+                        {
+                            direction = "right";
+                            j++;
+                        }
+                        break;
                 }
-            }
-            
-            if (finish[0] == 0 && direction == "R" && i < 5 && i >= 0 && j < 4 && j >= 0)
-            {
-                if (arr[i, j] == 1 && arr[i, j+1] == 1)
+
+                if (i == 4 && j == 4)
                 {
-                    if (j != 4) FindRoute(arr, finish, direction = "R", i, ++j);
-                    if (i != 4) FindRoute(arr, finish, direction = "D", ++i, j);
-                    if (i != 0) FindRoute(arr, finish, direction = "U", --i, j);
-                }    
-            }
-            
-            if (finish[0] == 0 && direction == "L" && i < 5 && i >= 0 && j < 5 && j > 0)
-            {
-                if (arr[i, j] == 1 && arr[i, j-1] == 1)
-                {
-                    if (j != 0) FindRoute(arr, finish, direction = "L", i, --j);
-                    if (i != 4) FindRoute(arr, finish, direction = "D", ++i, j);
-                    if (i != 0) FindRoute(arr, finish, direction = "U", --i, j);
+                    finished = true;
+                    break;
                 }
+
             }
 
-            if (finish[0] == 0 && direction == "U" && i < 5 && i > 0 && j < 5 && j >= 0)
-            {
-                if (arr[i, j] == 1 && arr[i - 1, j] == 1)
-                {
-                    if (i != 0) FindRoute(arr, finish, direction = "U", --i, j);
-                    if (j != 4) FindRoute(arr, finish, direction = "R", i, ++j);
-                    if (i != 0) FindRoute(arr, finish, direction = "L", i, --j);
-                }
-                
-            }
-            
-            if (finish[0] == 0)
-            {
-                Console.WriteLine($"Из точки [0, 0] в точку [4, 4] не существует путь");
-            }
-
-            ///if (i != 4) FindRoute(arr, rt, finish, ++i, j);
-            
-            
-            
-            
-            //if (i == 4 && j == 4)
-           // {
-            //    finish[0] = 1;
-            //    Console.WriteLine($"Из точки [0, 0] в точку [4, 4] существует путь.\n" +
-            //                        $"Маршрут: {rt}{i},{j}");
-            //}
-            //else if (finish[0] == 0 && arr[i, j] == 1) // проверяем: не дошли ли мы до финица, и равна ли текущая точка единице
-            //{
-            //    rt += $"{i},{j} => "; // вносим текущую точку в маршрут
-
-
-            //    if (i != 4) FindRoute(arr, rt, finish, ++i, j); // здесь и далее сдвигаемся на одну точку
-
-            //    if (j != 4) FindRoute(arr, rt, finish, i, ++j);
-   
-            //    if (i != 0) FindRoute(arr, rt, finish, --i, j);
-   
-            //    if (j != 0) FindRoute(arr, rt, finish, i, --j);
-
-            //}
-
+            if (!finished || steps == 0) Console.WriteLine("Выхода нет");
+            else Console.WriteLine("Из точки [0, 0] в точку [4, 4] существует путь");
         }
 
 
-        
+
     }
 
 
