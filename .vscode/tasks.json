@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Sem8_Task_4/Sem8_Task_4.csproj",
+                "${workspaceFolder}/Sem8_Task_3/Sem8_Task_3.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Sem8_Task_4/Sem8_Task_4.csproj",
+                "${workspaceFolder}/Sem8_Task_3/Sem8_Task_3.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Sem8_Task_4/Sem8_Task_4.csproj"
+                "${workspaceFolder}/Sem8_Task_3/Sem8_Task_3.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

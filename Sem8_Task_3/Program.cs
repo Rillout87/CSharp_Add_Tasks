@@ -20,22 +20,43 @@ namespace Sem8_Task_3
             Console.WriteLine("Исходный массив");
             PrintArray(array);
 
-            int minIndexX=0, minIndexY=0;
+            int minIndexY=0, minIndexX=0; // зададим минимальные индексы и значение здесь, а далее будем передавать их в методы по ссылке
             int minElement = array[0][0];
 
             FindMinElement(array, ref minIndexX, ref minIndexY, ref minElement);
 
-            Console.WriteLine($"{minIndexX} + {minIndexY} + {minElement}");
+            Console.WriteLine("Удалим столбец и диагонали, содержащие минимальный элемен {0} c индексом ({1},{2})", minElement, minIndexY, minIndexX);
 
+            PrintArray(CreateNewArray(array, ref minIndexX, ref minIndexY));
 
         }
 
-        static void CreatNewArray(int[][] arr, ref int minIndX, ref int minIndY)
+        public static int[][] CreateNewArray(int[][] arr, ref int minIndX, ref int minIndY)
         {
-            int[][] newArray = new int[arr.Length-1][];
-            for(int i = 0; i < m; i++) newArray[i] = new int[m];
+            int[][] newArr = new int[arr.Length][]; // в этот зубчатый массив запишем оставшиеся числа после удаления столбца и диагоналей
 
 
+            for (int i = 0; i < arr.Length; i++)
+            {
+                List<int> currentRow = new List<int>(); // заранее мы не знаем длину каждой строки в итоговом массивы, поэтому инициализируем кортеж
+                
+                for (int j = 0; j < arr[i].Length; j++)
+                {
+                    if (Math.Abs(minIndX - j) != Math.Abs(minIndY - i) && j != minIndX) // пропускаем элементы, лежащие в том же столбце и диагоналях, что и минимальный элемент
+                    {
+                    currentRow.Add(arr[i][j]); // записываем оставшиеся элементы в текущий кортеж
+                    }
+                }
+
+                newArr[i] = new int[currentRow.Count]; // длина каждой строки в новом зубчатом массиве равна текущему кортежу
+                for (int t = 0; t < newArr[i].Length; t++)
+                {
+                    newArr[i][t] = currentRow[t]; // копируем текущий кортеж в текущую строку нашего нового зубчатого массива
+                }
+
+            }
+
+            return newArr;
 
         }
 
@@ -51,7 +72,7 @@ namespace Sem8_Task_3
                     if (arr[i][j] < minElmt)
                     {
                         minElmt = arr[i][j];
-                        minIndX = i; minIndY = j;
+                        minIndY = i; minIndX = j;
                     }
                 }
             }
@@ -68,7 +89,7 @@ namespace Sem8_Task_3
             {
                 for (int j = 0; j < arr[i].Length; j++)
                 {
-                    arr[i][j] = rdm.Next(-99,100);
+                    arr[i][j] = rdm.Next(10,100);
 
                 }
 

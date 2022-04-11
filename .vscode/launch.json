@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Sem8_Task_4/bin/Debug/net6.0/Sem8_Task_4.dll",
+            "program": "${workspaceFolder}/Sem8_Task_3/bin/Debug/net6.0/Sem8_Task_3.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Sem8_Task_4",
+            "cwd": "${workspaceFolder}/Sem8_Task_3",
             "console": "internalConsole",
             "stopAtEntry": false
         },
