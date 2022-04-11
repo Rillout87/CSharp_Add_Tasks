@@ -15,7 +15,6 @@ namespace Sem8_Task_3
             int[][] array = new int[m][];
             for(int i = 0; i < m; i++) array[i] = new int[m];
 
-
             FillArray(array);
             Console.WriteLine("Исходный массив");
             PrintArray(array);
