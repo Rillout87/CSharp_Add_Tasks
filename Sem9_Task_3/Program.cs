@@ -14,7 +14,7 @@ namespace Sem9_Task_3
 
         {
             int a = 4;
-            int b = 3;
+            int b = 5;
 
             Console.WriteLine(Power(a, b));
             
@@ -26,7 +26,7 @@ namespace Sem9_Task_3
             if (b > 2) iterations = Power(a, --b);
 
 
-            if (b == 2)
+            if (b > 1)
             {
                 
                 for (int j = 1; j <= iterations - 1; j++)
