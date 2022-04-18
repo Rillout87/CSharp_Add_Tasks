@@ -2,11 +2,8 @@
 // Напишите рекурсивный метод, который перебирает все комбинации паролей. 
 
 
-// ДЕНИС, ЕСЛИ ВЫ ЭТО ЧИТАЕТЕ, ТО ЭТО ЗНАЧИТ, ЧТО НА ДАННЫЙ МОМЕНТ Я ЕЩЕ НЕ ДОДЕЛАЛ ЭТУ ЗАДАЧУ. ПРОШУ ПРОПУСТИТЬ - ДОДЕЛАЮ ПОТОМ САМ
-
-
 using System;
-//using System.Globalization;
+
 
 namespace Sem9_Task_2
 {
@@ -17,25 +14,37 @@ namespace Sem9_Task_2
         {
 
             string passwordElements = "qwertyuiopasdfghjklzxcvbnm0123456789";
-            string password = "s8j";
+            char[] password = {'s','8','j'};
+            bool wasHacked = false;
 
-            HackPassword(password, passwordElements);
+
+            HackPassword(password, passwordElements, new char[password.Length], ref wasHacked);
         }
-        static string HackPassword(string pswrd, string passElems, int i = -1)
+        static void HackPassword(char[] pswrd, string passElems, char[] currentPswrd, ref bool wasHckd, int length = 0)
         {
+            if(wasHckd) return;
 
-            if (i < passElems.Length)
+            if (new String(currentPswrd) == new String(pswrd))
             {
-                string currentPswrd = HackPassword(pswrd, passElems, ++i) + HackPassword(pswrd, passElems, ++i) + HackPassword(pswrd, passElems, ++i);
-                if (currentPswrd == pswrd)
-                {
-                    Console.WriteLine($"Пароль подобран: {currentPswrd}");
-                    return "";
-                }
-                else return Convert.ToString((passElems[i]));
-
+                Console.WriteLine($"Пароль подобран: {new String(currentPswrd)}");
+                wasHckd = true;
+                return;
             }
-            return "";
+
+            if (length < pswrd.Length)
+            {
+
+                for (int i = 0; i < passElems.Length; i++)
+                {
+
+                    currentPswrd[length] = passElems[i];
+
+                    HackPassword(pswrd, passElems, currentPswrd, ref wasHckd, length + 1);
+                }
+            
+            
+            }
+
         }
     }
 
